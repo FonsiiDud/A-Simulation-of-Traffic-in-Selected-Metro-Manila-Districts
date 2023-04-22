@@ -1,0 +1,206 @@
+from trafficSimulator import *
+
+# Create simulation
+sim = Simulation()
+
+# params
+lane_space = 2
+road_length = 50
+
+
+
+# LOWER ROXAS ROAD SEGMENTS
+LR_LANE_1_NORTH_START = (lane_space, road_length)
+LR_LANE_1_NORTH_END = (lane_space, -road_length)
+LR_LANE_2_NORTH_START = (lane_space*2+1, road_length)
+LR_LANE_2_NORTH_END = (lane_space*2+1, -road_length)
+LR_LANE_3_NORTH_START = (lane_space*4, road_length)
+LR_LANE_3_NORTH_END = (lane_space*4, -road_length)
+LR_LANE_4_NORTH_START = (lane_space*6-1, road_length)
+LR_LANE_4_NORTH_END = (lane_space*6-1, -road_length)
+
+
+# LOWER-MIDDLE ROXAS ROAD SEGMENTS NORTH-SOUTH
+straight_segment_length = 20
+
+LMR_LANE_1_NORTH_START = LR_LANE_1_NORTH_END
+LMR_LANE_1_NORTH_END = (LR_LANE_1_NORTH_END[0], LR_LANE_1_NORTH_END[1]-straight_segment_length)
+LMR_LANE_2_NORTH_START = LR_LANE_2_NORTH_END
+LMR_LANE_2_NORTH_END = (LR_LANE_2_NORTH_END[0], LR_LANE_2_NORTH_END[1]-straight_segment_length)
+LMR_LANE_3_NORTH_START = LR_LANE_3_NORTH_END
+LMR_LANE_3_NORTH_END = (LR_LANE_3_NORTH_END[0], LR_LANE_3_NORTH_END[1]-straight_segment_length)
+LMR_LANE_4_NORTH_START = LR_LANE_4_NORTH_END
+LMR_LANE_4_NORTH_END = (LR_LANE_4_NORTH_END[0], LR_LANE_4_NORTH_END[1]-straight_segment_length)
+
+
+# LOWER-MIDDLE ROXAS ROAD SEGMENTS EAST-WEST
+LMR_LANE_4_EAST_START = (LMR_LANE_4_NORTH_START[0]+2, LMR_LANE_4_NORTH_START[1]-4)
+LMR_LANE_4_EAST_END = (LMR_LANE_4_NORTH_START[0]+road_length*3, LMR_LANE_4_NORTH_START[1]-4)
+LMR_LANE_3_EAST_START = (LMR_LANE_4_NORTH_START[0]+2, LMR_LANE_4_NORTH_START[1]-8)
+LMR_LANE_3_EAST_END = (LMR_LANE_4_NORTH_START[0]+road_length*3, LMR_LANE_4_NORTH_START[1]-8)
+LMR_LANE_2_EAST_START = (LMR_LANE_4_NORTH_START[0]+2, LMR_LANE_4_NORTH_START[1]-12)
+LMR_LANE_2_EAST_END = (LMR_LANE_4_NORTH_START[0]+road_length*3, LMR_LANE_4_NORTH_START[1]-12)
+LMR_LANE_1_EAST_START = (LMR_LANE_4_NORTH_START[0]+2, LMR_LANE_4_NORTH_START[1]-16)
+LMR_LANE_1_EAST_END = (LMR_LANE_4_NORTH_START[0]+road_length*3, LMR_LANE_4_NORTH_START[1]-16)
+
+
+# MIDDLE ROXAS ROAD SEGMENTS
+MR_LANE_1_NORTH_START = LMR_LANE_1_NORTH_END
+MR_LANE_1_NORTH_END = (LMR_LANE_1_NORTH_END[0], LMR_LANE_1_NORTH_END[1]-road_length*3)
+MR_LANE_2_NORTH_START = LMR_LANE_2_NORTH_END
+MR_LANE_2_NORTH_END = (LMR_LANE_2_NORTH_END[0], LMR_LANE_2_NORTH_END[1]-road_length*3)
+MR_LANE_3_NORTH_START = LMR_LANE_3_NORTH_END
+MR_LANE_3_NORTH_END = (LMR_LANE_3_NORTH_END[0], LMR_LANE_3_NORTH_END[1]-road_length*3)
+MR_LANE_4_NORTH_START = LMR_LANE_4_NORTH_END
+MR_LANE_4_NORTH_END = (LMR_LANE_4_NORTH_END[0], LMR_LANE_4_NORTH_END[1]-road_length*3)
+
+# MIDDLE-UPPER ROXAS ROAD SEGMENTS NORTH-SOUTH
+straight_segment_length = 20
+
+MUR_LANE_1_NORTH_START = MR_LANE_1_NORTH_END
+MUR_LANE_1_NORTH_END = (MR_LANE_1_NORTH_END[0], MR_LANE_1_NORTH_END[1]-straight_segment_length)
+MUR_LANE_2_NORTH_START = MR_LANE_2_NORTH_END
+MUR_LANE_2_NORTH_END = (MR_LANE_2_NORTH_END[0], MR_LANE_2_NORTH_END[1]-straight_segment_length)
+MUR_LANE_3_NORTH_START = MR_LANE_3_NORTH_END
+MUR_LANE_3_NORTH_END = (MR_LANE_3_NORTH_END[0], MR_LANE_3_NORTH_END[1]-straight_segment_length)
+MUR_LANE_4_NORTH_START = MR_LANE_4_NORTH_END
+MUR_LANE_4_NORTH_END = (MR_LANE_4_NORTH_END[0], MR_LANE_4_NORTH_END[1]-straight_segment_length)
+
+# MIDDLE-UPPER ROXAS ROAD SEGMENTS EAST-WEST
+MUR_LANE_4_EAST_START = (MUR_LANE_4_NORTH_START[0]+2, MUR_LANE_4_NORTH_START[1]-4)
+MUR_LANE_4_EAST_END = (MUR_LANE_4_NORTH_START[0]+road_length*3, MUR_LANE_4_NORTH_START[1]-4)
+MUR_LANE_3_EAST_START = (MUR_LANE_4_NORTH_START[0]+2, MUR_LANE_4_NORTH_START[1]-8)
+MUR_LANE_3_EAST_END = (MUR_LANE_4_NORTH_START[0]+road_length*3, MUR_LANE_4_NORTH_START[1]-8)
+MUR_LANE_2_EAST_START = (MUR_LANE_4_NORTH_START[0]+2, MUR_LANE_4_NORTH_START[1]-12)
+MUR_LANE_2_EAST_END = (MUR_LANE_4_NORTH_START[0]+road_length*3, MUR_LANE_4_NORTH_START[1]-12)
+MUR_LANE_1_EAST_START = (MUR_LANE_4_NORTH_START[0]+2, MUR_LANE_4_NORTH_START[1]-16)
+MUR_LANE_1_EAST_END = (MUR_LANE_4_NORTH_START[0]+road_length*3, MUR_LANE_4_NORTH_START[1]-16)
+
+# UPPER ROXAS ROAD SEGMENTS
+UP_LANE_1_NORTH_START = MUR_LANE_1_NORTH_END
+UP_LANE_1_NORTH_END = (MUR_LANE_1_NORTH_END[0], MUR_LANE_1_NORTH_END[1]-road_length*3)
+UP_LANE_2_NORTH_START = MUR_LANE_2_NORTH_END
+UP_LANE_2_NORTH_END = (MUR_LANE_2_NORTH_END[0], MUR_LANE_2_NORTH_END[1]-road_length*3)
+UP_LANE_3_NORTH_START = MUR_LANE_3_NORTH_END
+UP_LANE_3_NORTH_END = (MUR_LANE_3_NORTH_END[0], MUR_LANE_3_NORTH_END[1]-road_length*3)
+UP_LANE_4_NORTH_START = MUR_LANE_4_NORTH_END
+UP_LANE_4_NORTH_END = (MUR_LANE_4_NORTH_END[0], MUR_LANE_4_NORTH_END[1]-road_length*3)
+
+# southbound road segments
+LR_LANE_1_SOUTH_START = (-UP_LANE_1_NORTH_END[0], UP_LANE_1_NORTH_END[1]) 
+LR_LANE_1_SOUTH_END = (-LR_LANE_1_NORTH_START[0], LR_LANE_1_NORTH_START[1])
+LR_LANE_2_SOUTH_START = (-UP_LANE_2_NORTH_END[0], UP_LANE_2_NORTH_END[1])
+LR_LANE_2_SOUTH_END = (-LR_LANE_2_NORTH_START[0], LR_LANE_1_NORTH_START[1])
+LR_LANE_3_SOUTH_START = (-UP_LANE_3_NORTH_END[0], UP_LANE_3_NORTH_END[1])
+LR_LANE_3_SOUTH_END = (-LR_LANE_3_NORTH_START[0], LR_LANE_1_NORTH_START[1])
+LR_LANE_4_SOUTH_START = (-UP_LANE_4_NORTH_END[0], UP_LANE_4_NORTH_END[1])
+LR_LANE_4_SOUTH_END = (-LR_LANE_4_NORTH_START[0], LR_LANE_1_NORTH_START[1])
+
+
+###################### end of road segments ######################
+
+# LOWER ROXAS NORTHBOUND ROADS
+lrnc_1 = LR_LANE_1_NORTH_START, LR_LANE_1_NORTH_END
+lrnc_2 = LR_LANE_2_NORTH_START, LR_LANE_2_NORTH_END
+lrnc_3 = LR_LANE_3_NORTH_START, LR_LANE_3_NORTH_END
+lrnc_4 = LR_LANE_4_NORTH_START, LR_LANE_4_NORTH_END
+
+
+lower_roxas_coords = [lrnc_1, lrnc_2, lrnc_3, lrnc_4]
+
+# LOWER MIDDLE ROXAS CONNECTION ROADS
+lmnrc_1 = LMR_LANE_1_NORTH_START, LMR_LANE_1_NORTH_END
+lmnrc_2 = LMR_LANE_2_NORTH_START, LMR_LANE_2_NORTH_END
+lmnrc_3 = LMR_LANE_3_NORTH_START, LMR_LANE_3_NORTH_END
+lmnrc_4 = LMR_LANE_4_NORTH_START, LMR_LANE_4_NORTH_END
+
+lmerc_1 = LMR_LANE_4_EAST_START, LMR_LANE_4_EAST_END
+lmerc_2 = LMR_LANE_3_EAST_START, LMR_LANE_3_EAST_END
+lmerc_3 = LMR_LANE_2_EAST_START, LMR_LANE_2_EAST_END
+lmerc_4 = LMR_LANE_1_EAST_START, LMR_LANE_1_EAST_END
+
+east_connectors = [lmerc_1, lmerc_2, lmerc_3, lmerc_4]
+
+lower_middle_connector_coords = [lmnrc_1, lmnrc_2, lmnrc_3, lmnrc_4]
+
+# MIDDLE ROXAS ROADS
+mrc_1 = MR_LANE_1_NORTH_START, MR_LANE_1_NORTH_END
+mrc_2 = MR_LANE_2_NORTH_START, MR_LANE_2_NORTH_END
+mrc_3 = MR_LANE_3_NORTH_START, MR_LANE_3_NORTH_END
+mrc_4 = MR_LANE_4_NORTH_START, MR_LANE_4_NORTH_END
+
+middle_roxas_coords = [mrc_1, mrc_2, mrc_3, mrc_4]
+
+# MIDDLE UPPER ROXAS CONNECTION ROADS
+murc_1 = MUR_LANE_1_NORTH_START, MUR_LANE_1_NORTH_END
+murc_2 = MUR_LANE_2_NORTH_START, MUR_LANE_2_NORTH_END
+murc_3 = MUR_LANE_3_NORTH_START, MUR_LANE_3_NORTH_END
+murc_4 = MUR_LANE_4_NORTH_START, MUR_LANE_4_NORTH_END
+
+muerc_1 = MUR_LANE_4_EAST_START, MUR_LANE_4_EAST_END
+muerc_2 = MUR_LANE_3_EAST_START, MUR_LANE_3_EAST_END
+muerc_3 = MUR_LANE_2_EAST_START, MUR_LANE_2_EAST_END
+muerc_4 = MUR_LANE_1_EAST_START, MUR_LANE_1_EAST_END
+
+middle_upper_connector_coords = [murc_1, murc_2, murc_3, murc_4, muerc_1, muerc_2, muerc_3, muerc_4]
+
+# UPPER ROXAS ROADS
+upc_1 = UP_LANE_1_NORTH_START, UP_LANE_1_NORTH_END
+upc_2 = UP_LANE_2_NORTH_START, UP_LANE_2_NORTH_END
+upc_3 = UP_LANE_3_NORTH_START, UP_LANE_3_NORTH_END
+upc_4 = UP_LANE_4_NORTH_START, UP_LANE_4_NORTH_END
+
+upper_roxas_coords = [upc_1, upc_2, upc_3, upc_4]
+
+# SOUTHBOUND ROADS
+lrsc_1 = LR_LANE_1_SOUTH_START, LR_LANE_1_SOUTH_END
+lrsc_2 = LR_LANE_2_SOUTH_START, LR_LANE_2_SOUTH_END
+lrsc_3 = LR_LANE_3_SOUTH_START, LR_LANE_3_SOUTH_END
+lrsc_4 = LR_LANE_4_SOUTH_START, LR_LANE_4_SOUTH_END
+
+south_coords = [lrsc_1, lrsc_2, lrsc_3, lrsc_4]
+
+###################### end of roads ######################
+
+road_coord_collection = [lower_roxas_coords, lower_middle_connector_coords, middle_roxas_coords, east_connectors, middle_upper_connector_coords, upper_roxas_coords, south_coords]
+
+road_array = []
+
+for road_collection in road_coord_collection:
+    for road in road_collection:
+        road_array.append(road)
+
+sim.create_roads(road_array)
+
+
+sim.create_gen({
+    'vehicle_rate': 60,
+    'vehicles': [
+        
+        # NORTHBOUND VEHICLES
+        [3, {"path": [0,4,8,16,24]}],
+        [6, {"path": [1,5,9,17,25]}],
+        
+        [3, {"path": [3,7,11,19,26]}],
+        [6, {"path": [2,6,10,18,27]}],
+
+        # SOUTHBOUND VEHICLES
+        [3, {"path": [28]}],
+        [6, {"path": [29]}],
+        
+        [3, {"path": [31]}],
+        [6, {"path": [30]}],
+    ]
+})
+
+
+
+
+sim.create_signal([[0,1,2,3], [8,9,10,11]])
+
+
+
+# Start simulation
+win = Window(sim)
+win.zoom = 8
+win.run(steps_per_update=5)
